@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package go.micro.server.user;
+option go_package=".;user";
+
+service User {
+   
+  // 注册
+  rpc Register(UserRegisterReq) returns(UserRegisterResp) {}
+  //登录
+  rpc Login(UserLoginReq) returns(UserLoginResp) {}
+  // 查询用户信息
+  rpc GetUserInfo(UserInfoReq) returns(UserInfoResp) {}
+}
+
+message UserRegisterReq {
+  string user_name = 1;
+  string first_name = 2;
+  string pwd = 3;
+}
+
+message UserRegisterResp {
+  string message =1;
+}
+
+message UserInfoReq {
+  string user_name = 1;
+
+}
+
+message UserInfoResp {
+  int64 user_id = 1;
+  string user_name = 2;
+  string first_name = 3;
+}
+
+message UserLoginReq {
+  string user_name = 1;
+  string pwd = 2;
+}
+
+message UserLoginResp {
+  bool is_success = 1;
+}
